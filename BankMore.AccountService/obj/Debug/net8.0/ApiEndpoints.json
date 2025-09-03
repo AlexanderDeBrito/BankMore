@@ -1,0 +1,76 @@
+[
+  {
+    "ContainingType": "BankMore.AccountService.Presentation.Controllers.AccountsController",
+    "Method": "Create",
+    "RelativePath": "accounts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BankMore.AccountService.Application.Commands.CreateAccountCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BankMore.AccountService.Presentation.Controllers.AccountsController",
+    "Method": "Inactivate",
+    "RelativePath": "accounts",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BankMore.AccountService.Application.Commands.InactivateAccountCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BankMore.AccountService.Presentation.Controllers.AccountsController",
+    "Method": "Login",
+    "RelativePath": "accounts/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BankMore.AccountService.Application.Commands.LoginCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BankMore.AccountService.Presentation.Controllers.BalanceController",
+    "Method": "Get",
+    "RelativePath": "balance",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BankMore.AccountService.Presentation.Controllers.MovementsController",
+    "Method": "Create",
+    "RelativePath": "movements",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BankMore.AccountService.Application.Commands.CreateMovementCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

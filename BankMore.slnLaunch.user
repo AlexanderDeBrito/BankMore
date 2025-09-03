@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "Novo Perfil",
+    "Projects": [
+      {
+        "Path": "BankMore.AccountService\\BankMore.AccountService.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      },
+      {
+        "Path": "BankMore.TransferService\\BankMore.TransferService.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      },
+      {
+        "Path": "BankMore.TariffService\\BankMore.TariffService.csproj",
+        "Action": "Start",
+        "DebugTarget": "BankMore.TariffService"
+      }
+    ]
+  }
+]
