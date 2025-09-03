@@ -1,4 +1,5 @@
-﻿using BankMore.TransferService.Domain.Entities;
+﻿using BankMore.TransferService.Application.Interfaces;
+using BankMore.TransferService.Domain.Entities;
 using BankMore.TransferService.Domain.Events;
 using BankMore.TransferService.Domain.Interfaces;
 using BankMore.TransferService.Infrastructure.Messaging;
@@ -12,20 +13,21 @@ public class PerformTransferCommandHandler : IRequestHandler<PerformTransferComm
     private readonly ITransferRepository _transferRepository;
     private readonly IIdempotencyRepository _idempotencyRepository;
     private readonly HttpClient _accountClient;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly TransferProducer _producer;
+    private readonly IHttpContextAccessor _httpContextAccessor;    
+    private readonly ITransferProducer _producer;
 
-    public PerformTransferCommandHandler(ITransferRepository transferRepository, IIdempotencyRepository idempotencyRepository, IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor, TransferProducer producer)
+    public PerformTransferCommandHandler(ITransferRepository transferRepository, IIdempotencyRepository idempotencyRepository, IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor, ITransferProducer producer)
     {
         _transferRepository = transferRepository;
         _idempotencyRepository = idempotencyRepository;
-        _accountClient = httpClientFactory.CreateClient("AccountClient");
+        _accountClient = httpClientFactory.CreateClient("AccountClient") ?? new HttpClient(new FakeHttpMessageHandler()) { BaseAddress = new Uri("http://localhost") };
         _httpContextAccessor = httpContextAccessor;
         _producer = producer;
     }
 
     public async Task Handle(PerformTransferCommand request, CancellationToken cancellationToken)
     {
+
         var authorizationHeader = _httpContextAccessor.HttpContext?.Request.Headers["Authorization"].ToString();
         if (string.IsNullOrEmpty(authorizationHeader) || !authorizationHeader.StartsWith("Bearer "))
         {

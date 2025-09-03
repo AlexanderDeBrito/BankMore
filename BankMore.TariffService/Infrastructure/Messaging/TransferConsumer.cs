@@ -12,6 +12,12 @@ public class TransferConsumer : IMessageHandler
     private readonly IServiceProvider _serviceProvider;
     private readonly IConfiguration _configuration;
     private readonly TariffProducer _producer;
+    private TariffRepository @object;
+
+    public TransferConsumer(TariffRepository @object)
+    {
+        this.@object = @object;
+    }
 
     public TransferConsumer(IServiceProvider serviceProvider, IConfiguration configuration, TariffProducer producer)
     {

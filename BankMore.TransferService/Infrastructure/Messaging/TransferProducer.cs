@@ -1,11 +1,12 @@
-﻿using BankMore.TransferService.Domain.Events;
+﻿using BankMore.TransferService.Application.Interfaces;
+using BankMore.TransferService.Domain.Events;
 using KafkaFlow;
 using KafkaFlow.Producers;
 using System.Text.Json;
 
 namespace BankMore.TransferService.Infrastructure.Messaging;
 
-public class TransferProducer
+public class TransferProducer: ITransferProducer
 {
     private readonly IMessageProducer _producer;
 

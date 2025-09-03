@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BankMore.TariffService.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc8f3a8820f6fb7b97a81e310b6585fb8b27b60f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48368b332cf22bb4b9117bbd5087e579b8a457f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("BankMore.TariffService.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BankMore.TariffService.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
