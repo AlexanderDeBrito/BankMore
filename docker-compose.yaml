@@ -5,7 +5,7 @@ services:
     build:
       context: ../BankMore/BankMore.AccountService
     ports:
-      - "5013:80"
+      - "5001:80"
     depends_on:
       - redis
       - kafka
@@ -14,12 +14,14 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
+      - Redis__ConnectionString=redis:6379         
+      - Kafka__BootstrapServers=kafka:9092         
 
   transfer-api:
     build:
       context: ../BankMore/BankMore.TransferService
     ports:
-      - "5001:80"
+      - "5002:80"
     depends_on:
       - account-api
       - redis
@@ -29,12 +31,14 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
+      - Redis__ConnectionString=redis:6379         
+      - Kafka__BootstrapServers=kafka:9092         
 
   tariff-app:
     build:
       context: ../BankMore/BankMore.TariffService
     ports:
-      - "5002:80"
+      - "5003:80"
     depends_on:
       - kafka
     volumes:
@@ -42,6 +46,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
+      - Kafka__BootstrapServers=kafka:9092         
+
 
   redis:
     image: redis:latest

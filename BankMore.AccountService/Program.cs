@@ -45,7 +45,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 //kafka
-builder.Services.AddKafka(kafka => kafka    
+builder.Services.AddKafka(kafka => kafka
     .AddCluster(cluster => cluster
         .WithBrokers(new[] { builder.Configuration["Kafka:BootstrapServers"] })
         .AddConsumer(consumer => consumer
@@ -81,13 +81,14 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddScoped<IDbConnection>(sp =>
 {
     var connection = new SqliteConnection(connectionString);
-    connection.Open(); 
+    connection.Open();
     return connection;
 });
 
 
 // Força a porta 5013
-builder.WebHost.UseUrls("http://localhost:5013");
+//builder.WebHost.UseUrls("http://localhost:5013");
+builder.WebHost.UseUrls("http://+:80");
 
 var app = builder.Build();
 
@@ -107,14 +108,15 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Habilita Swagger apenas em ambiente de desenvolvimento
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Account API v1");
+        c.RoutePrefix = "swagger";
     });
-}
+//}
 
 
 app.UseAuthentication();

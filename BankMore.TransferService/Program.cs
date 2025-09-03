@@ -114,6 +114,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Transfer API v1");
+        c.RoutePrefix = "swagger";
     });
 }
 
