@@ -9,6 +9,7 @@ using Polly.Extensions.Http;
 using System.Text;
 using KafkaFlow;
 using BankMore.TransferService.Infrastructure.Messaging;
+using BankMore.TransferService.Application.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -84,8 +85,9 @@ builder.Services.AddHttpContextAccessor();
 // Registra repositories
 builder.Services.AddScoped<ITransferRepository, TransferRepository>();
 builder.Services.AddScoped<IIdempotencyRepository, IdempotencyRepository>();
+builder.Services.AddScoped<ITransferProducer, TransferProducer>();
 builder.Services.AddScoped<CacheService>();
-builder.Services.AddScoped<TransferProducer>();
+builder.Services.AddScoped<FakeHttpMessageHandler>();
 
 //// Força a porta 5001 (ajuste para desenvolvimento)
 //builder.WebHost.UseUrls("http://localhost:5001");
